@@ -10,6 +10,8 @@
    There were a bunch of unreleased refactorings and tweaks on master that our project had yet to absorb.
    This fork reflects our divergence from the original mbenford/ngTagsInput begining with release v3.2.0
 - v3.2.1 is our first alteration: feature/autocomplete-allow-select
+    Eg, to prevent our injected hints from being selectable by the autocomplete directive:
+       autocomplete[... allow-select="$match.type !== 'hint'" ...]
 ```
 
 # ngTagsInput 

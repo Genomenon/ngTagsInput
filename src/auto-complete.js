@@ -31,9 +31,13 @@
  *    The expression is provided with the current match as $match, its index as $index and its state as $selected. The result
  *    of the evaluation must be one of the values supported by the ngClass directive (either a string, an array or an object).
  *    See https://docs.angularjs.org/api/ng/directive/ngClass for more information.
+ * @param {expression=} [allowSelect=NA] Expression to evaluate for each match to determine if the match can be selected 
+ *    in the UI. If the expression is defined, it is provided with the current match as $match.
+ *    If the expression returns true, the match will be selectable as normal. Otherwise, any attempt to select the match
+ *    will result in the next selectable match being selected, or none if there are no selectable matches left in the list.
  */
 tagsInput.directive('autoComplete', function($document, $timeout, $sce, $q, tagsInputConfig, tiUtil) {
-    function SuggestionList(loadFn, options, events) {
+    function SuggestionList(loadFn, options, events, allowSelect) {
         var self = {}, getDifference, lastPromise, getTagId;
 
         getTagId = function() {
@@ -107,6 +111,13 @@ tagsInput.directive('autoComplete', function($document, $timeout, $sce, $q, tags
             else if (index >= self.items.length) {
                 index = 0;
             }
+            while (!allowSelect({$match: self.items[index]})) {
+                index++
+                if (index >= self.items.length) {
+                    index = -1;
+                    break;
+                }
+            }
             self.index = index;
             self.selected = self.items[index];
             events.trigger('suggestion-selected', index);
@@ -138,7 +149,8 @@ tagsInput.directive('autoComplete', function($document, $timeout, $sce, $q, tags
         require: '^tagsInput',
         scope: {
             source: '&',
-            matchClass: '&'
+            matchClass: '&',
+            allowSelect: '&'
         },
         templateUrl: 'ngTagsInput/auto-complete.html',
         controller: function($scope, $element, $attrs) {
@@ -157,7 +169,7 @@ tagsInput.directive('autoComplete', function($document, $timeout, $sce, $q, tags
                 displayProperty: [String, '']
             });
 
-            $scope.suggestionList = new SuggestionList($scope.source, $scope.options, $scope.events);
+            $scope.suggestionList = new SuggestionList($scope.source, $scope.options, $scope.events, $scope.allowSelect);
 
             this.registerAutocompleteMatch = function() {
                 return {
