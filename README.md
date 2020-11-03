@@ -1,3 +1,17 @@
+# HEADS UP! GENOMENON FORK OF ngTagsInput
+
+```
+2020-11-03 github.com/dcrosby42 dcrosby@genomenon.com
+
+- Forked from https://github.com/mbenford/ngTagsInput
+- DELETED 'master' branch
+- CREATED new default branch 'main'
+- 'main' was set BACK to commit f2e4b7207beb8e87d3685c432195413fa910c2b0 (v3.2.0) 
+   There were a bunch of unreleased refactorings and tweaks on master that our project had yet to absorb.
+   This fork reflects our divergence from the original mbenford/ngTagsInput begining with release v3.2.0
+- v3.2.1 is our first alteration: feature/autocomplete-allow-select
+```
+
 # ngTagsInput 
 
 [![Travis](https://img.shields.io/travis/mbenford/ngTagsInput.svg?style=flat)](https://travis-ci.org/mbenford/ngTagsInput)
