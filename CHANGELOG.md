@@ -1,3 +1,9 @@
+## 3.2.1 (2020-11-03)
+
+#### Features
+
+* **autocomplete:** Add support for `allow-select` expression in `autocomplete` elements ([35932bd](https://github.com/Genomenon/ngTagsInput/commit/35932bda5d3c211a2bd0fe683318c5e023d755a3))
+
 ## 3.2.0 (2017-04-15)
 
 #### Features
