@@ -1,3 +1,9 @@
+## 3.2.2 (2020-11-03)
+
+#### Features
+
+* **autocomplete:** Replace `allow-select` with inverted `prevent-select` expression in `autocomplete` elements. ([d0c62dc](https://github.com/Genomenon/ngTagsInput/commit/d0c62dc318517c852558b731d5beb39874d6c534)
+
 ## 3.2.1 (2020-11-03)
 
 #### Features
