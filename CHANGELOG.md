@@ -1,8 +1,15 @@
+## 3.2.3 (2020-11-06)
+
+#### Features
+
+* **autocomplete:** Provide `selected` state to autocomplete suggestion templates. ([cceafeb](https://github.com/Genomenon/ngTagsInput/commit/cceafeb5b23c36757074a366b4a54d5779528d4b))
+* **autocomplete:** Provide `$modifiers` local to event handlers `on-tag-adding` and `on-tag-added`, to allow user-defined handlers to know if `shiftKey`, `ctrlKey`, `altKey` or `metaKey` were held during selection. ([e7429fe](https://github.com/Genomenon/ngTagsInput/commit/e7429fef32ef9f31d1a5022b1f5bf8f53e82fb55))
+
 ## 3.2.2 (2020-11-03)
 
 #### Features
 
-* **autocomplete:** Replace `allow-select` with inverted `prevent-select` expression in `autocomplete` elements. ([d0c62dc](https://github.com/Genomenon/ngTagsInput/commit/d0c62dc318517c852558b731d5beb39874d6c534)
+* **autocomplete:** Replace `allow-select` with inverted `prevent-select` expression in `autocomplete` elements. ([d0c62dc](https://github.com/Genomenon/ngTagsInput/commit/d0c62dc318517c852558b731d5beb39874d6c534))
 
 ## 3.2.1 (2020-11-03)
 
