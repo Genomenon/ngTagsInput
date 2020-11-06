@@ -218,11 +218,15 @@ tagsInput.directive('autoComplete', function($document, $timeout, $sce, $q, tags
             };
 
             scope.getSuggestionClass = function(item, index) {
-                var selected = item === suggestionList.selected;
+                var selected = scope.getSelected(item)
                 return [
                     scope.matchClass({$match: item, $index: index, $selected: selected}),
                     { selected: selected }
                 ];
+            };
+
+            scope.getSelected = function(item) {
+                return item === suggestionList.selected;
             };
 
             tagsInput
