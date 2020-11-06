@@ -67,7 +67,7 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
             tag[options.displayProperty] = text;
         };
 
-        canAddTag = function(tag) {
+        canAddTag = function(tag,modifiers) {
             var tagText = getTagText(tag);
             var valid = tagText &&
                         tagText.length >= options.minLength &&
@@ -75,7 +75,7 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
                         options.allowedTagsPattern.test(tagText) &&
                         !tiUtil.findInObjectArray(self.items, tag, options.keyProperty || options.displayProperty);
 
-            return $q.when(valid && onTagAdding({ $tag: tag })).then(tiUtil.promisifyValue);
+            return $q.when(valid && onTagAdding({ $tag: tag, $modifiers: modifiers })).then(tiUtil.promisifyValue);
         };
 
         canRemoveTag = function(tag) {
@@ -90,7 +90,7 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
             return self.add(tag);
         };
 
-        self.add = function(tag) {
+        self.add = function(tag, modifiers) {
             var tagText = getTagText(tag);
 
             if (options.replaceSpacesWithDashes) {
@@ -99,10 +99,10 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
 
             setTagText(tag, tagText);
 
-            return canAddTag(tag)
+            return canAddTag(tag,modifiers)
                 .then(function() {
                     self.items.push(tag);
-                    events.trigger('tag-added', { $tag: tag });
+                    events.trigger('tag-added', { $tag: tag, $modifiers: modifiers });
                 })
                 .catch(function() {
                     if (tagText) {
@@ -220,8 +220,8 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
                 var input = $element.find('input');
 
                 return {
-                    addTag: function(tag) {
-                        return $scope.tagList.add(tag);
+                    addTag: function(tag,modifiers) {
+                        return $scope.tagList.add(tag, modifiers);
                     },
                     getTags: function() {
                         return $scope.tagList.items;

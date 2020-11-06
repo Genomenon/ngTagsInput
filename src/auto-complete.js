@@ -197,16 +197,25 @@ tagsInput.directive('autoComplete', function($document, $timeout, $sce, $q, tags
 
             scope.templateScope = tagsInput.getTemplateScope();
 
-            scope.addSuggestionByIndex = function(index) {
+            scope.addSuggestionByIndex = function(index,event) {
                 suggestionList.select(index);
-                scope.addSuggestion();
+                scope.addSuggestion(event);
             };
 
-            scope.addSuggestion = function() {
+            scope.addSuggestion = function(event) {
                 var added = false;
 
                 if (suggestionList.selected) {
-                    tagsInput.addTag(angular.copy(suggestionList.selected));
+                    var modifiers = { shiftKey: false, ctrlKey: false, altKey: false, metaKey: false };
+                    if (event) {
+                        modifiers = {
+                            shiftKey: event.shiftKey,
+                            ctrlKey: event.ctrlKey,
+                            altKey: event.altKey,
+                            metaKey: event.metaKey,
+                        }
+                    }
+                    tagsInput.addTag(angular.copy(suggestionList.selected), modifiers);
                     suggestionList.reset();
                     added = true;
                 }
@@ -250,8 +259,9 @@ tagsInput.directive('autoComplete', function($document, $timeout, $sce, $q, tags
                 .on('input-keydown', function(event) {
                     var key = event.keyCode,
                         handled = false;
+                    var keyIsASelector = key === KEYS.enter || key === KEYS.tab;
 
-                    if (tiUtil.isModifierOn(event) || hotkeys.indexOf(key) === -1) {
+                    if ((tiUtil.isModifierOn(event) && !keyIsASelector) || hotkeys.indexOf(key) === -1) {
                         return;
                     }
 
@@ -270,7 +280,7 @@ tagsInput.directive('autoComplete', function($document, $timeout, $sce, $q, tags
                             handled = true;
                         }
                         else if (key === KEYS.enter || key === KEYS.tab) {
-                            handled = scope.addSuggestion();
+                            handled = scope.addSuggestion(event);
                         }
                     }
                     else {
