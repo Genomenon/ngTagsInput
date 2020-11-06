@@ -15,7 +15,8 @@ tagsInput.directive('tiAutocompleteMatch', function($sce, tiUtil) {
         template: '<ng-include src="$$template"></ng-include>',
         scope: {
             $scope: '=scope',
-            data: '='
+            data: '=',
+            selected: '<'
         },
         link: function(scope, element, attrs, autoCompleteCtrl) {
             var autoComplete = autoCompleteCtrl.registerAutocompleteMatch(),
