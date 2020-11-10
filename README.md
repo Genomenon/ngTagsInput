@@ -14,6 +14,8 @@
        autocomplete[... allow-select="$match.type !== 'hint'" ...]
 ```
 
+**See the updated [CHANGELOG](CHANGELOG.md) for more Genomenon-related changes**
+
 # ngTagsInput 
 
 [![Travis](https://img.shields.io/travis/mbenford/ngTagsInput.svg?style=flat)](https://travis-ci.org/mbenford/ngTagsInput)
@@ -91,7 +93,7 @@ Now all you have to do is add the scripts to your application. Just make sure th
 
 ## Options
 
-Check out the [documentation](http://mbenford.github.io/ngTagsInput/documentation/api) page for a detailed view of all available options.
+Check out the [(ORIGINAL mbenford) documentation](http://mbenford.github.io/ngTagsInput/documentation/api) page for a detailed view of all available options.
 
 ## Demo
 
@@ -103,11 +105,11 @@ Before posting an issue or sending a pull request, make sure to read the [CONTRI
 
 ## License
 
-See the [LICENSE](https://github.com/mbenford/ngTagsInput/blob/master/LICENSE) file.
+See the [LICENSE](LICENSE) file.
 
 ## Changelog
 
-See the [CHANGELOG](https://github.com/mbenford/ngTagsInput/blob/master/CHANGELOG.md) page.
+See the [CHANGELOG](CHANGELOG.md) page.
 
 ## Alternatives
 
