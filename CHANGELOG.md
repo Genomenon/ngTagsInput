@@ -1,3 +1,9 @@
+## 3.2.4 (2020-11-10)
+
+#### Features
+
+* **autocomplete:** Provide `messages` list to prepend to match list. ([099c001](https://github.com/Genomenon/ngTagsInput/pull/5/commits/099c001f353420ee6d62db4350cad951ef13b1da))
+
 ## 3.2.3 (2020-11-06)
 
 #### Features
