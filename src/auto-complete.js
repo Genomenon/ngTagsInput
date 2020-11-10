@@ -11,6 +11,7 @@
  * @param {expression} source Expression to evaluate upon changing the input content. The input value is available as
  *    $query. The result of the expression must be a promise that eventually resolves to an array of strings.
  * @param {string=} [template=NA] URL or id of a custom template for rendering each element of the autocomplete list.
+ * @param {string=} [messageTemplate=NA] URL or id of a custom template for rendering each message in the bound `messages` list.
  * @param {string=} [displayProperty=tagsInput.displayText] Property to be rendered as the autocomplete label.
  * @param {number=} [debounceDelay=100] Amount of time, in milliseconds, to wait before evaluating the expression in
  *    the source option after the last keystroke.
@@ -147,6 +148,7 @@ tagsInput.directive('autoComplete', function($document, $timeout, $sce, $q, tags
         restrict: 'E',
         require: '^tagsInput',
         scope: {
+            messages: '=',
             source: '&',
             matchClass: '&',
             preventSelect: '&'
@@ -157,6 +159,7 @@ tagsInput.directive('autoComplete', function($document, $timeout, $sce, $q, tags
 
             tagsInputConfig.load('autoComplete', $scope, $attrs, {
                 template: [String, 'ngTagsInput/auto-complete-match.html'],
+                messageTemplate: [String,'ngTagsInput/auto-complete-match.html'],
                 debounceDelay: [Number, 100],
                 minLength: [Number, 3],
                 highlightMatchedText: [Boolean, true],
@@ -299,6 +302,12 @@ tagsInput.directive('autoComplete', function($document, $timeout, $sce, $q, tags
 
             events.on('suggestion-selected', function(index) {
                 scrollToElement(element, index);
+            });
+
+            scope.$watch('messages', function(value) {
+                if (value && value.length) {
+                    suggestionList.show()
+                }
             });
         }
     };
